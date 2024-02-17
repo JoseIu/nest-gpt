@@ -30,5 +30,5 @@ export const prosConsDicusserUseCase = async (
   });
 
   //   const jsonRes = JSON.parse(completion.choices[0].message.content);
-  return completion.choices[0].message.content;
+  return completion.choices[0].message;
 };
