@@ -4,10 +4,7 @@ interface Options {
   prompt: string;
 }
 
-export const prosConsDicusserUseCase = async (
-  openAi: OpenAI,
-  options: Options,
-) => {
+export const prosConsDicusserUseCase = async (openAi: OpenAI, options: Options) => {
   const { prompt } = options;
 
   const completion = await openAi.chat.completions.create({
