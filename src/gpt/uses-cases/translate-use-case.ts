@@ -13,5 +13,6 @@ export const translateUseCase = async (opeAi: OpenAI, { prompt, lang }) => {
     temperature: 0.2,
   });
 
-  return completion.choices[0].message.content;
+  //Return only the content
+  return { message: completion.choices[0].message.content };
 };
