@@ -2,6 +2,9 @@
 /dist
 /node_modules
 /build
+# Ignored audios generated
+generated/audios
+!/generated/.gitkeep
 
 # Logs
 logs
