@@ -1,6 +1,23 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  FileTypeValidator,
+  Get,
+  HttpStatus,
+  MaxFileSizeValidator,
+  Param,
+  ParseFilePipe,
+  Post,
+  Res,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid';
 import { AudioToTextDto } from './dtos/audioToText.dto';
+import { imageGenerationDto } from './dtos/imageGeneration.dto';
 import { OrthographyDto } from './dtos/orthography.dto';
 import { ProsConsDiscusserDto } from './dtos/prosConsDiscusser.dto';
 import { TextToAudioDto } from './dtos/textToAudio.dto';
@@ -30,7 +47,6 @@ export class GptController {
 
     for await (const chunk of stream) {
       const piece = chunk.choices[0].delta.content || '';
-      // console.log(piece);
       res.write(piece);
     }
 
@@ -64,7 +80,38 @@ export class GptController {
   }
 
   @Post('audio-to-text')
-  audioToText(@Body() body: AudioToTextDto) {
-    return this.gptService.audioToTex(body);
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './generated/uploads',
+        filename: (req, file, callback) => {
+          const fileExtension = file.originalname.split('.').pop();
+
+          const fileName = `${uuidv4()}.${fileExtension}`;
+
+          return callback(null, fileName);
+        },
+      }),
+    }),
+  )
+  async audioToText(
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 1000 * 1024 * 5, message: 'El audio no puede ser mayor a 5 mb' }),
+          new FileTypeValidator({ fileType: 'audio/*' }),
+        ],
+      }),
+    )
+    file: Express.Multer.File,
+
+    @Body() audioToTextDto: AudioToTextDto,
+  ) {
+    return this.gptService.audioToTex(file, audioToTextDto);
+  }
+
+  @Post('image-generation')
+  async imageGeneration(@Body() imageGenerationPromot: imageGenerationDto) {
+    return this.gptService.imageGeneration(imageGenerationPromot);
   }
 }
