@@ -4,6 +4,8 @@
 /build
 # Ignored audios generated
 generated/audios
+generated/uploads
+
 !/generated/.gitkeep
 
 # Logs
