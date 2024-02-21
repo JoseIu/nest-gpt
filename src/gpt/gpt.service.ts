@@ -3,12 +3,14 @@ import * as fs from 'fs';
 import OpenAI from 'openai';
 import * as path from 'path';
 import { AudioToTextDto } from './dtos/audioToText.dto';
+import { imageGenerationDto } from './dtos/imageGeneration.dto';
 import { OrthographyDto } from './dtos/orthography.dto';
 import { ProsConsDiscusserDto } from './dtos/prosConsDiscusser.dto';
 import { TextToAudioDto } from './dtos/textToAudio.dto';
 import { TranslateDto } from './dtos/translate.dto';
 import {
   audioToTextUseCase,
+  imgaGenerationUseCase,
   orthographyUseCase,
   prosConsDicusserStreamUseCase,
   prosConsDicusserUseCase,
@@ -58,7 +60,12 @@ export class GptService {
     return filePath;
   }
 
-  async audioToTex({ prompt, audio }: AudioToTextDto) {
-    return audioToTextUseCase(prompt, audio);
+  async audioToTex(audioFIle: Express.Multer.File, audioToTextDto?: AudioToTextDto) {
+    const { prompt } = audioToTextDto;
+    return audioToTextUseCase(this.opeAi, { audioFIle, prompt });
+  }
+
+  async imageGeneration(imageGenerationPromot: imageGenerationDto) {
+    return imgaGenerationUseCase(this.opeAi, imageGenerationPromot);
   }
 }
