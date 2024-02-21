@@ -1,9 +1,7 @@
-import { IsAlphanumeric, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class AudioToTextDto {
+  @IsOptional()
   @IsString()
   readonly prompt: string;
-
-  @IsAlphanumeric()
-  readonly audio: any;
 }
