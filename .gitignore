@@ -5,6 +5,7 @@
 # Ignored audios generated
 generated/audios
 generated/uploads
+generated/images
 
 !/generated/.gitkeep
 
