@@ -66,6 +66,15 @@ export class GptService {
   }
 
   async imageGeneration(imageGenerationPromot: imageGenerationDto) {
-    return imgaGenerationUseCase(this.opeAi, imageGenerationPromot);
+    return await imgaGenerationUseCase(this.opeAi, imageGenerationPromot);
+  }
+
+  getIamge(imageId: string) {
+    const imageIdPath = path.resolve(__dirname, '../../generated/images/', `${imageId}.png`);
+    const imageFound = fs.existsSync(imageIdPath);
+
+    if (!imageFound) new NotFoundException(`Imagen ${imageId} no contrado`);
+
+    return imageIdPath;
   }
 }
