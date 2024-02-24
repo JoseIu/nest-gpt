@@ -18,6 +18,7 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import { AudioToTextDto } from './dtos/audioToText.dto';
 import { imageGenerationDto } from './dtos/imageGeneration.dto';
+import { imageVariationDto } from './dtos/imageVariation.dto';
 import { OrthographyDto } from './dtos/orthography.dto';
 import { ProsConsDiscusserDto } from './dtos/prosConsDiscusser.dto';
 import { TextToAudioDto } from './dtos/textToAudio.dto';
@@ -122,5 +123,10 @@ export class GptController {
     res.status(HttpStatus.OK);
 
     res.sendFile(imageIdPath);
+  }
+
+  @Post('image-variation')
+  async imageVariation(@Body() baseImage: imageVariationDto) {
+    return await this.gptService.imageVariation(baseImage);
   }
 }
