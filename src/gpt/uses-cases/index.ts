@@ -10,3 +10,5 @@ export * from './textToAudio.use-case';
 export * from './audioToText.use-case';
 
 export * from './imgageGeneration.use-case';
+
+export * from './imageVariation.use-case';
