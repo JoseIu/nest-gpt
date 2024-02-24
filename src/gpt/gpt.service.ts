@@ -4,12 +4,14 @@ import OpenAI from 'openai';
 import * as path from 'path';
 import { AudioToTextDto } from './dtos/audioToText.dto';
 import { imageGenerationDto } from './dtos/imageGeneration.dto';
+import { imageVariationDto } from './dtos/imageVariation.dto';
 import { OrthographyDto } from './dtos/orthography.dto';
 import { ProsConsDiscusserDto } from './dtos/prosConsDiscusser.dto';
 import { TextToAudioDto } from './dtos/textToAudio.dto';
 import { TranslateDto } from './dtos/translate.dto';
 import {
   audioToTextUseCase,
+  imageVariationUseCase,
   imgaGenerationUseCase,
   orthographyUseCase,
   prosConsDicusserStreamUseCase,
@@ -76,5 +78,9 @@ export class GptService {
     if (!imageFound) new NotFoundException(`Imagen ${imageId} no contrado`);
 
     return imageIdPath;
+  }
+
+  async imageVariation(baseImage: imageVariationDto) {
+    return await imageVariationUseCase(this.opeAi, baseImage);
   }
 }
