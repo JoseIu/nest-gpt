@@ -72,7 +72,7 @@ export class GptService {
   }
 
   getIamge(imageId: string) {
-    const imageIdPath = path.resolve(__dirname, '../../generated/images/', `${imageId}.png`);
+    const imageIdPath = path.resolve(__dirname, '../../generated/images/', `${imageId}`);
     const imageFound = fs.existsSync(imageIdPath);
 
     if (!imageFound) new NotFoundException(`Imagen ${imageId} no contrado`);
