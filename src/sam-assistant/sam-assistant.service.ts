@@ -30,7 +30,7 @@ export class SamAssistantService {
     //Esperamos a que el status sea completed
     await checkCompleteStatusUseCase(this.opeAi, { runId: run.id, threadId });
 
-    const messages = getMessagesUseCase(this.opeAi, { threadId });
+    const messages = await getMessagesUseCase(this.opeAi, { threadId });
 
     return messages;
   }
