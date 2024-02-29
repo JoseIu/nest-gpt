@@ -28,6 +28,14 @@ import { GptService } from './gpt.service';
 @Controller('gpt')
 export class GptController {
   constructor(private readonly gptService: GptService) {}
+  @Post('test-1')
+  test() {
+    return 'Holaaa';
+  }
+  @Get('test-1')
+  test2() {
+    return 'Holaaa MUNDO';
+  }
 
   @Post('orthography')
   orthographyCheck(@Body() body: OrthographyDto) {

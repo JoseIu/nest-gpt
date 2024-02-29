@@ -15,13 +15,13 @@ async function bootstrap() {
   );
   const port = process.env.PORT || 3000;
 
-  app.enableCors({
-    origin: [process.env.FRONT_URL, process.env.FRONT_URL2],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    allowedHeaders: 'Content-Type,Authorization',
-  });
-  //coment
+  // app.enableCors({
+  //   origin: [process.env.FRONT_URL, process.env.FRONT_URL2],
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //   credentials: true,
+  //   allowedHeaders: 'Content-Type,Authorization',
+  // });
+  app.enableCors();
 
   //extend method POST
   app.use(bodyParser.json({ limit: '10mb' }));
