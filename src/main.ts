@@ -20,6 +20,7 @@ async function bootstrap() {
     credentials: true,
     allowedHeaders: 'Content-Type,Authorization',
   });
+  //coment
 
   //extend method POST
   app.use(bodyParser.json({ limit: '10mb' }));
