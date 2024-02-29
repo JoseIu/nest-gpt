@@ -14,7 +14,9 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors({});
+  app.enableCors({
+    origin: `${process.env.FRONT_URL}`,
+  });
 
   //extend method POST
   app.use(bodyParser.json({ limit: '10mb' }));
