@@ -33,6 +33,7 @@
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "sharp": "^0.33.2",
+    "uninstall": "^0.0.0",
     "uuid": "^9.0.1",
     "vercel": "^33.5.3"
   },
