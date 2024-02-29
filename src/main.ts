@@ -13,6 +13,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  const port = process.env.PORT || 3000;
 
   app.enableCors({
     origin: [process.env.FRONT_URL, process.env.FRONT_URL2],
@@ -26,6 +27,6 @@ async function bootstrap() {
   app.use(bodyParser.json({ limit: '10mb' }));
   app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
-  await app.listen(3000);
+  await app.listen(port);
 }
 bootstrap();
