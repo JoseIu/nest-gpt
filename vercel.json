@@ -1,12 +1,12 @@
 {
   "version": 2,
   "env": {
-    "OPENAI_AKI_KEY": "@openai_aki_key",
-    "ASSISTANT_ID": "@assistant_id",
-    "SERVER_URL": "@server_url",
-    "PORT": "@port",
-    "FRONT_URL": "@front_url",
-    "FRONT_URL2": "@front_url2"
+    "OPENAI_AKI_KEY": "@OPENAI_AKI_KEY",
+    "ASSISTANT_ID": "@ASSISTANT_ID",
+    "SERVER_URL": "@SERVER_URL",
+    "PORT": "@PORT",
+    "FRONT_URL": "@FRONT_URL",
+    "FRONT_URL2": "@FRONT_URL2"
   },
   "builds": [
     {
