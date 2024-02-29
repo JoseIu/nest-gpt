@@ -15,7 +15,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: [`${process.env.FRONT_URL}`, `${process.env.FRONT_URL2}`],
+    origin: [process.env.FRONT_URL, process.env.FRONT_URL2],
   });
 
   //extend method POST
